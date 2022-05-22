@@ -1,20 +1,31 @@
 <template>
   <v-container>
-    <v-card raised>
-      <v-simple-table style="mytable">
-        <tbody>
-          <tr v-for="(row, idx) in sudokuGrid" :key="idx">
-            <td v-for="(cell, idy) in row" :key="idy">
-              <v-text-field dark:true v-model="sudokuGrid[idx][idy]">
-                {{ sudokuGrid[idx][idy] }}
-              </v-text-field>
-            </td>
-          </tr>
-        </tbody>
-      </v-simple-table>
-    </v-card>
-    <v-spacer />
-    <v-btn block outlined color="indigo" @click="logGrid"> Validate </v-btn>
+    <v-row class="fill-height" align="center">
+      <v-col cols="12" sm="4">
+        <v-row align="center" justify="center">
+          <v-col>
+            <div class="grid-sudoku">
+              <div v-for="(row, idx) in sudokuGrid" class="grid-row" :key="idx">
+                <div v-for="(cell, idy) in row" class="grid-cell" :key="idy">
+                  <input
+                    type="text"
+                    v-model="sudokuGrid[idx][idy]"
+                    class="grid-cell-editor"
+                  />
+                </div>
+              </div>
+            </div>
+          </v-col>
+        </v-row>
+        <v-row align="center" justify="center">
+          <v-col>
+            <v-btn block outlined color="indigo" @click="logGrid">
+              Validate
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -45,5 +56,38 @@ export default class SudokuValidator extends Vue {
 .mytable {
   border-color: black;
   border: 1em;
+}
+
+.grid-sudoku {
+  display: table;
+  background: white;
+  border: 3px solid black;
+}
+
+.grid-sudoku > div:nth-child(3),
+.grid-sudoku > div:nth-child(6) {
+  border-bottom: 3px solid black;
+}
+
+.grid-row > div:nth-child(3),
+.grid-row > div:nth-child(6) {
+  border-right: 3px solid black;
+}
+
+.grid-cell {
+  display: table-cell;
+  padding: 10px;
+  border: 1px dotted gray;
+}
+
+.grid-cell-editor {
+  border: none;
+  width: 20px;
+  height: 20px;
+  font-family: "Courier", sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 18px;
+  transition: all ease 1s;
 }
 </style>

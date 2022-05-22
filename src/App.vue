@@ -1,30 +1,35 @@
 <template>
-  <v-app>
-    <v-app-bar app color="primary" dark>
+  <v-app id="sudoku-validator">
+    <v-app-bar app color="primary" dark clipped-left>
       <div class="d-flex align-center">
         <v-img
-          alt="Vuetify Logo"
+          alt="Azena Logo"
           class="shrink mr-2"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          :src="require('./assets/logo-azena.svg')"
           transition="scale-transition"
-          width="40"
+          width="130"
         />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+        <h2>Sudoku Validator</h2>
       </div>
     </v-app-bar>
 
+    <v-navigation-drawer app absolute clipped width="200">
+      <v-list dense>
+        <v-list-item-content> Home </v-list-item-content>
+        <v-list-item-content> Sudoku </v-list-item-content>
+      </v-list>
+    </v-navigation-drawer>
+
     <v-main>
-      <router-view />
+      <v-container fluid>
+        <router-view />
+      </v-container>
     </v-main>
+
+    <v-footer app color="green lighten-2">
+      The usual footer information
+    </v-footer>
   </v-app>
 </template>
 
