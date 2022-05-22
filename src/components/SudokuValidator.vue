@@ -19,11 +19,17 @@
         </v-row>
         <v-row align="center" justify="center">
           <v-col>
-            <v-btn block outlined color="indigo" @click="logGrid">
+            <v-btn block outlined color="indigo" @click="saveGrid">
               Validate
             </v-btn>
           </v-col>
         </v-row>
+        <v-alert type="success" :value="validationOk">
+          Board validated successfully
+        </v-alert>
+        <v-alert type="error" :value="validationErr">
+          Board validation error.
+        </v-alert>
       </v-col>
     </v-row>
   </v-container>
@@ -31,9 +37,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { saveBoard, validateBoard } from "@/services/sudoku";
 
 @Component
 export default class SudokuValidator extends Vue {
+  private validationOk = false;
+  private validationErr = false;
   private sudokuGrid = [
     [1, 2, 3, 4, 5, 6, 7, 8, 9],
     [6, 5, 4, 0, 0, 0, 0, 0, 0],
@@ -46,8 +55,25 @@ export default class SudokuValidator extends Vue {
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
   ];
 
-  private logGrid() {
-    console.log(this.sudokuGrid);
+  private saveGrid() {
+    let x = { board: this.sudokuGrid };
+
+    console.log(x);
+
+    saveBoard(x).then((response) => {
+      console.log(response);
+      validateBoard(response).then((response) => {
+        if (response) {
+          console.log("board is valid;");
+          this.validationOk = true;
+          this.validationErr = false;
+        } else {
+          console.log("invalid board");
+          this.validationOk = false;
+          this.validationErr = true;
+        }
+      });
+    });
   }
 }
 </script>
