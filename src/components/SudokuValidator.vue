@@ -1,18 +1,31 @@
 <template>
   <v-container>
-    <div class="grid-sudoku">
-      <div v-for="(row, idx) in sudokuGrid" class="grid-row" :key="idx">
-        <div v-for="(cell, idy) in row" class="grid-cell" :key="idy">
-          <input
-            type="text"
-            v-model="sudokuGrid[idx][idy]"
-            class="grid-cell-editor"
-          />
-        </div>
-      </div>
-    </div>
-    <v-spacer />
-    <v-btn block outlined color="indigo" @click="logGrid"> Validate </v-btn>
+    <v-row class="fill-height" align="center">
+      <v-col cols="12" sm="4">
+        <v-row align="center" justify="center">
+          <v-col>
+            <div class="grid-sudoku">
+              <div v-for="(row, idx) in sudokuGrid" class="grid-row" :key="idx">
+                <div v-for="(cell, idy) in row" class="grid-cell" :key="idy">
+                  <input
+                    type="text"
+                    v-model="sudokuGrid[idx][idy]"
+                    class="grid-cell-editor"
+                  />
+                </div>
+              </div>
+            </div>
+          </v-col>
+        </v-row>
+        <v-row align="center" justify="center">
+          <v-col>
+            <v-btn block outlined color="indigo" @click="logGrid">
+              Validate
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
