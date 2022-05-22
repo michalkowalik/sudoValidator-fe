@@ -64,7 +64,7 @@ export default class SudokuValidator extends Vue {
 .grid-cell {
   display: table-cell;
   padding: 10px;
-  border: 1px solid gray;
+  border: 1px dotted gray;
 }
 
 .grid-cell-editor {
