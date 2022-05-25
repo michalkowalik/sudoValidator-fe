@@ -1,5 +1,10 @@
 # validator-fe
 
+
+This is a simple Vue / Vuetify frontend app for the Sudoku Validator assignment.
+
+Your task is to implement the functionality provided by the backend. 
+
 ## Project setup
 ```
 yarn install

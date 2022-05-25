@@ -14,6 +14,7 @@
       </div>
     </v-app-bar>
 
+  <!-- ! could this be replaced by an acutal menu? -->
     <v-navigation-drawer app absolute clipped width="200">
       <v-list dense>
         <v-list-item-content> Home </v-list-item-content>

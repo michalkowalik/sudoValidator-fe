@@ -5,31 +5,19 @@
         <v-row align="center" justify="center">
           <v-col>
             <div class="grid-sudoku">
-              <div v-for="(row, idx) in sudokuGrid" class="grid-row" :key="idx">
-                <div v-for="(cell, idy) in row" class="grid-cell" :key="idy">
-                  <input
-                    type="text"
-                    v-model="sudokuGrid[idx][idy]"
-                    class="grid-cell-editor"
-                  />
-                </div>
-              </div>
+
+              <!-- The grid is is missing here -->
+            
             </div>
           </v-col>
         </v-row>
         <v-row align="center" justify="center">
           <v-col>
-            <v-btn block outlined color="indigo" @click="saveGrid">
+            <v-btn block outlined color="indigo">
               Validate
             </v-btn>
           </v-col>
         </v-row>
-        <v-alert type="success" :value="validationOk">
-          Board validated successfully
-        </v-alert>
-        <v-alert type="error" :value="validationErr">
-          Board validation error.
-        </v-alert>
       </v-col>
     </v-row>
   </v-container>
@@ -37,46 +25,17 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { saveBoard, validateBoard } from "@/services/sudoku";
 
 @Component
 export default class SudokuValidator extends Vue {
-  private validationOk = false;
-  private validationErr = false;
-  private sudokuGrid = [
-    [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    [6, 5, 4, 0, 0, 0, 0, 0, 0],
-    [7, 8, 9, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ];
-
-  private saveGrid() {
-    let x = { board: this.sudokuGrid };
-
-    console.log(x);
-
-    saveBoard(x).then((response) => {
-      console.log(response);
-      validateBoard(response).then((response) => {
-        if (response) {
-          console.log("board is valid;");
-          this.validationOk = true;
-          this.validationErr = false;
-        } else {
-          console.log("invalid board");
-          this.validationOk = false;
-          this.validationErr = true;
-        }
-      });
-    });
-  }
 }
 </script>
+
+
+<!--
+   The CSS below lets you quite easily render a board. 
+   But you are free to change it of course!
+-->
 
 <style scoped>
 .mytable {
