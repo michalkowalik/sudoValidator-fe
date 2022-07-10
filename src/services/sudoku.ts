@@ -10,8 +10,9 @@ type SaveBoardResponse = {
 };
 
 export async function saveBoard(data: Board): Promise<SaveBoardResponse> {
-  const response = await axios.post(`http://localhost:8080/board`, data, {
+  const response = await axios.post(`http://dev.win:9090/board`, data, {
     headers: {
+      "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
       Accept: "application/json",
     },
@@ -21,7 +22,8 @@ export async function saveBoard(data: Board): Promise<SaveBoardResponse> {
 
 export async function validateBoard(data: SaveBoardResponse): Promise<boolean> {
   const response = await axios.get(
-    "http://localhost:8080/board/" + data.id + "/isvalid"
+    "http://dev.win:9090/board/" + data.id + "/isvalid",
+    { headers: { "Access-Control-Allow-Origin": "*" } }
   );
   return response.data;
 }
